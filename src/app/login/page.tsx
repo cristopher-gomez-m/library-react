@@ -1,17 +1,10 @@
-// pages/login.js
-//'use client'
-import Form from "@/components/Form";
+'use client'
 
-const initialForm: initialForm  = {
-	email:"",
-	password:"",
-};
+import Form from "@/components/Form";
 
 const LoginPage = () => {
   return (
-    <div>
-      <Form></Form>
-    </div>
+      <Form id='test'></Form>
   );
 };
 
