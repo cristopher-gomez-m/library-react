@@ -4,6 +4,7 @@ import '../../styles/globals.css'
 
 import Link from "next/link";
 import { Providers } from "./providers";
+import styles from './page.module.css';
 //import { ChakraProvider } from "@chakra-ui/react";
 //const inter = Inter({ subsets: ['latin'] })
 const links = [
@@ -38,14 +39,12 @@ export default function RootLayout({
         </head>
         <body>
           <header>
-            <nav>
-              <ul>
+            <nav className={styles.navContainer}>
+
                 {links.map(({ label, route }) => (
-                  <li key={route}>
-                    <Link href={route}>{label}</Link>
-                  </li>
+                 
+                    <Link key={label} href={route} className={styles.item}>{label}</Link>
                 ))}
-              </ul>
             </nav>
           </header>
           <Providers>

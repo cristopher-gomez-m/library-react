@@ -1,3 +1,4 @@
+
 export default function AboutPage() {
-  return <h1>Este es el about</h1>;
+  return (<h1 className="text-white">Este es el about</h1>);
 }
