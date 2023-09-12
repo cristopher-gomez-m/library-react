@@ -1,10 +1,10 @@
 'use client'
 
-import Form from "@/components/Form";
+import Form from "./infrastructure/Form";
 
 const LoginPage = () => {
   return (
-      <Form id='test'></Form>
+      <Form></Form>
   );
 };
 
