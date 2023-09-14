@@ -16,10 +16,22 @@ export const UseForm = (initialForm: initialForm, func: Function) => {
     handleChange(inputEvent); // Llama a la función handleChange para actualizar el estado del formulario
     setErrors(func(form)); // Actualiza los errores después del cambio o desenfoque
   };
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>)=>{
+    evt.preventDefault()
+    setErrors(func(form))
+
+    if(Object.keys(errors).length ===0 ){
+        alert('enviando formulario')
+    }else{
+        return;
+    }
+}
+  
   return {
     form,
     errors,
     handleChange,
-    handleBlur
+    handleBlur,
+    handleSubmit
   };
 };

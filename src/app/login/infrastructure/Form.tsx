@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { EyeSlashFilledIcon } from "../../../icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "../../../icons/EyeFilledIcon";
 import { UseForm } from "../application/UseForm";
-import styles from '../app/page.module.css'
+import styles from '../../page.module.css'
 const initialForm: initialForm = {
   email: "",
   password: "",
@@ -18,13 +18,13 @@ const validationsForm: Function = (form: initialForm) => {
     errors.email = "El campo 'Email' es requerido";
   }
   if (!form.password.trim()) {
-    errors.password = "El campo email 'password' es requerido";
+     errors.password = "El campo 'password' es requerido";
   }
   return errors;
 };
 
 const form = () => {
-  const { form,errors, handleChange, handleBlur } = UseForm(
+  const { form,errors, handleChange, handleBlur,handleSubmit } = UseForm(
     initialForm,
     validationsForm
   );
@@ -36,7 +36,7 @@ const form = () => {
     <div className=" w-screen h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-semibold mb-4 text-center">Login</h1>
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="">
           <label className='text-red-500' htmlFor="email">Email</label>
           <Input
             id="email"
@@ -49,12 +49,16 @@ const form = () => {
             value={form.email}
             className="w-full"
           />
-          {errors.email && <p className={`${styles.app} mt-3 mb-2`}>{errors.email} </p>}
-          <label htmlFor="password">Password</label>
+          {errors.email && <p className="mb-2">{errors.email} </p>}
+          <label className='text-red-500 mt-8' htmlFor="password">Password</label>
           <Input
             id="password"
             aria-describedby="password-description"
             placeholder="Enter your password"
+            type="text"
+            name="password"
+            onChange={handleChange}
+            onBlur={handleBlur}
             endContent={
               <button
                 className="focus:outline-none"
@@ -68,13 +72,12 @@ const form = () => {
                 )}
               </button>
             }
-            type="email"
-            className="w-full"
           />
+          {errors.password && <p className="mb-8">{errors.password} </p>}
           <div className="flex justify-center ">
             {" "}
             {/* Agregar esta línea */}
-            <Button id="test" color="primary" className="mt-2 mx-auto w-1/2">
+            <Button type='submit' id="test" color="primary" className="mt-2 mx-auto w-1/2">
               Button
             </Button>
           </div>
