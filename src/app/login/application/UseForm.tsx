@@ -1,37 +1,35 @@
 "use client";
-import { useState,FocusEvent, ChangeEvent } from "react";
-export const UseForm = (initialForm: initialForm, func: Function) => {
+import { useState, FocusEvent, ChangeEvent } from "react";
+export const UseForm = (
+  initialForm: initialForm,
+) => {
   const [form, setForm] = useState<initialForm>(initialForm);
-  const [errors, setErrors] = useState<validatedForm>({});
 
-  const handleChange = (evt:ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = evt.target;
     setForm({
-        ...form,
-        [evt.target.name]: evt.target.value,
+      ...form,
+      [name]: value,
     });
   };
 
   const handleBlur = (evt: FocusEvent<Element>) => {
     const inputEvent = evt as FocusEvent<HTMLInputElement>;
-    handleChange(inputEvent); // Llama a la función handleChange para actualizar el estado del formulario
-    setErrors(func(form)); // Actualiza los errores después del cambio o desenfoque
+    handleChange(inputEvent);
+    const { name, value } = inputEvent.target;
+    //validateForm(name, value);
   };
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>)=>{
-    evt.preventDefault()
-    setErrors(func(form))
 
-    if(Object.keys(errors).length ===0 ){
-        alert('enviando formulario')
-    }else{
-        return;
-    }
-}
-  
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+      alert("Enviando formulario");
+      // Realiza la lógica de envío del formulario aquí
+  };
   return {
     form,
-    errors,
+    //errors,
     handleChange,
     handleBlur,
-    handleSubmit
+    handleSubmit,
   };
 };

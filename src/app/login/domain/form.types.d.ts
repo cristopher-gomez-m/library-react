@@ -10,4 +10,8 @@ interface validatedForm{
 
 interface Function{
     (initialForm:initialForm):{}
-  }
+}
+
+type ValidationFunctions = {
+    [fieldName: string]: (value: string) => string;
+};
